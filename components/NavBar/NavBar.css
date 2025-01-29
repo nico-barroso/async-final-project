@@ -1,8 +1,11 @@
+@import url("https://use.typekit.net/qzi0yho.css");
 nav {
-  position: absolute;
-  height: 100vh;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  height: 100%;
   width: 80px;
-  padding: 30px;
+  padding: 25px;
   border-right: 1px solid var(--light-gray);
 
   ul {
@@ -11,7 +14,6 @@ nav {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px;
   }
   ul > div {
     display: flex;
@@ -45,6 +47,7 @@ nav {
 }
 
 .hoverInfo {
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,10 +56,28 @@ nav {
   left: 90px;
   background-color: var(--dark-gray);
   color: white;
-  padding: 0.5% 1%;
+  padding: 5px 10px;
   font-family: Roboto, sans-serif;
+  white-space: no-wrap;
 }
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    top: 90%;
+    height: 80px;
+    background-color: white;
+    border-top: 1.5px solid var(--light-gray);
+  }
+  nav ul {
+    flex-direction: row;
+  }
+
+  ul div {
+    flex-direction: row !important;
+  }
 }

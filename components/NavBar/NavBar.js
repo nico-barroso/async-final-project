@@ -1,7 +1,9 @@
 import "./NavBar.css";
 
-export const NavBar = () => `
-<nav>
+export const NavBar = () => {
+  const header = document.querySelector("header");
+  const nav = document.createElement("nav");
+  nav.innerHTML = `
   <ul>
     <div>
       <li class="logo">
@@ -30,14 +32,15 @@ export const NavBar = () => `
       <span class="hoverInfo hidden">Más opciones</span>
     </li>
   </ul>
-</nav>
-`;
+  `;
+  header.append(nav);
+  NavBarHover();
+};
 
-export const NavBarHover = () => {
+const NavBarHover = () => {
   const liList = document.querySelectorAll("nav li");
 
   liList.forEach((item) => {
-    console.log(item);
     item.addEventListener("mouseenter", () => {
       const span = item.querySelector("span");
       if (span) {

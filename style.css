@@ -10,6 +10,9 @@
 :root {
   --light-gray: #dddddd;
   --dark-gray: #252525;
+  --s-radius: 8px;
+  --lower-radius: 16px;
+  --higher-radius: 24px;
 }
 
 * {
@@ -18,4 +21,41 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+}
+body {
+  display: grid;
+  grid-template-columns: 80px 1fr; /* Primera columna fija, segunda flexible */
+  height: 100%; /* Ocupa el 100% de la altura */
+  grid-template-areas: "header main";
+}
+header {
+  z-index: 20;
+  grid-area: header;
+  height: 100vh;
+  position: fixed;
+}
+main {
+  grid-area: main;
+  position: relative;
+  width: 100%;
+}
+
+/*Button style reset*/
+button {
+  appearance: none; /* Elimina los estilos predeterminados */
+  background: none; /* Elimina el fondo */
+  border: none; /* Elimina el borde */
+  outline: none; /* Elimina el contorno al hacer clic */
+}
+
+button:active {
+  transform: none; /* Evita cualquier cambio de escala */
+  box-shadow: none; /* Elimina cualquier sombra al hacer clic */
+  background: none; /* Previene el fondo predeterminado */
+}
+
+@media (max-width: 768px) {
+  body {
+    display: block;
+  }
 }
