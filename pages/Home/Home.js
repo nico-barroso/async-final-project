@@ -10,21 +10,24 @@ export const Home = () => {
   searchBar();
   topics();
   gallery.create();
-  gallery.loadPhotos(); 
+  gallery.loadPhotos();
 };
 
-// Configurar la barra de búsqueda
+const updateGallery = async (query) => {
+  try {
+    gallery.cleaner();
+    gallery.query = query;
+    gallery.page = 1;
+    await gallery.loadPhotos();
+  } catch (error) {
+    console.error("Error al obtener las fotos:", error);
+  }
+};
+
 const searchBar = () => {
   search.create();
-  search.query(async (query) => {
-    try {
-      gallery.cleaner(); // Limpiar la galería antes de cargar nuevas fotos
-      gallery.query = query; // Actualizar el término de búsqueda
-      gallery.page = 1; // Reiniciar a la primera página
-      gallery.loadPhotos(); // Cargar las nuevas fotos
-    } catch (error) {
-      console.error("Error al obtener las fotos:", error);
-    }
+  search.query((query) => {
+    updateGallery(query);
   });
 };
 
@@ -34,16 +37,13 @@ const topics = async () => {
   const topics = document.querySelectorAll(".topic-container li");
 
   for (let topic of topics) {
-    topic.addEventListener("click", async () => {
+    topic.addEventListener("click", () => {
       topics.forEach((topc) => topc.classList.remove("active"));
       topic.classList.add("active");
 
       const topicId = topic.id;
 
-      gallery.cleaner(); // Limpiar la galería
-      gallery.query = topicId; // Actualizar el término de búsqueda
-      gallery.page = 1; // Reiniciar a la primera página
-      gallery.loadPhotos(); // Cargar fotos del nuevo tema
+      updateGallery(topicId);
     });
   }
 };

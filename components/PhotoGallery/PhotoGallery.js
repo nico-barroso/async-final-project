@@ -10,7 +10,7 @@ export class PhotoGallery {
     this.query = null;
   }
 
-  // Crear la galería (sin petición inicial)
+
   create() {
     this.galleryContainer = document.createElement("ul");
     this.galleryContainer.classList.add("grid-container");
@@ -22,19 +22,19 @@ export class PhotoGallery {
   async loadPhotos() {
     try {
       if (!this.query) {
-        this.query = "all"; // Asignar valor predeterminado
+        this.query = "all";
       }
 
       const photos = await getPhotos(this.query, this.page);
       this.update(photos);
-      this.page++; // Incrementa la página tras la carga
+      this.page++; 
     } catch (error) {
       console.error("Error al cargar las fotos:", error);
     } finally {
     }
   }
 
-  // Actualizar la galería con nuevas fotos
+
   update(photos) {
     const newPhotoElements = [];
     for (const photo of photos) {
@@ -55,7 +55,7 @@ export class PhotoGallery {
     this.photoSelection(newPhotoElements);
   }
 
-  // Manejar el scroll infinito
+
   initScrollListener() {
     window.addEventListener("scroll", () => {
       const scrollPosition = window.scrollY + window.innerHeight;
@@ -66,10 +66,11 @@ export class PhotoGallery {
     });
   }
 
-  // Selección de fotos
+
   photoSelection(allPhotos) {
     for (let photo of allPhotos) {
       photo.addEventListener("click", (event) => {
+        console.log(event.target);
         const url = event.target.src;
         const author = event.target.dataset.user;
         const raw = event.target.dataset.raw;

@@ -6,21 +6,9 @@ export const getPhotos = async (query, page) => {
       }`
     );
 
-    // Verificar si la respuesta es exitosa
-    if (!response.ok) {
-      throw new Error("No se pudo obtener las fotos de la API");
-    }
-
     const results = await response.json();
-    console.log(results);
-    // Verificar si los resultados están disponibles y no son vacíos
-    if (!results.results || results.results.length === 0) {
-      throw new Error("No se encontraron fotos para la consulta");
-    }
-
-    return results.results; // Retornar los resultados
+    return results.results;
   } catch (error) {
     console.error("Error al obtener fotos:", error);
-    return []; // Retorna un array vacío en caso de error
   }
 };

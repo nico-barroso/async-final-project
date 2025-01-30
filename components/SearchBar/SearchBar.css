@@ -21,12 +21,15 @@ form {
 input {
   all: unset;
   font: 16px system-ui;
-  color: #fff;
+  border-radius: 10px;
   height: 100%;
   width: 100%;
-  padding: 6px 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-
+input:focus {
+  outline: auto;
+}
 ::placeholder {
   color: var(--dark-gray);
   opacity: 0.6;
