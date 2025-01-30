@@ -2,16 +2,23 @@ import "./pin.css";
 import { PhotoGallery } from "../../components/PhotoGallery/PhotoGallery";
 
 export const pin = (url, imgRAW, author, description) => {
-  const element = document.querySelector("#pin-container"); // Corrección aquí
-  if (element) {
-    element.remove();
-    enableScroll();
-  } else {
+  let element = document.querySelector("#pin-container");
+
+  if (!element) {
     pinShowCase(url, imgRAW, author, description);
+  } else {
+    updatePinContent(url, imgRAW, author, description);
   }
 };
 
-// Función para mostrar la imagen seleccionada y detalles
+const updatePinContent = (url, imgRAW, author, description) => {
+  document.querySelector(".pin-img-container img").src = url;
+  document.querySelector(".pin-img-container img").alt = description;
+  document.querySelector(".pin-data h2").textContent = author;
+  document.querySelector(".pin-data p").textContent = description;
+  loadGallery(description);
+};
+
 const pinShowCase = (url, imgRAW, author, description) => {
   const imgSect = document.createElement("section");
   imgSect.id = "pin-container";
@@ -33,30 +40,29 @@ const pinShowCase = (url, imgRAW, author, description) => {
         </section>
       </article>
     </div>
+    <div class="grid-container"></div> <!-- Contenedor para la galería -->
   `;
-
   document.querySelector("main").prepend(imgSect);
-
   disableScroll();
   loadGallery(description);
   setupExpandButton(imgRAW, description);
   setupBackButton();
 };
 
-// Carga una nueva galería sin crear una nueva instancia de `PhotoGallery` cada vez
 const loadGallery = (query) => {
   const galleryContainer = document.querySelector(
     "#pin-container .grid-container"
   );
-  if (!galleryContainer) {
-    const gallery = new PhotoGallery("#pin-container");
-    gallery.create();
-    gallery.query = query;
-    gallery.loadPhotos();
-  }
+  galleryContainer.innerHTML = "";
+  const gallery = new PhotoGallery("#pin-container .grid-container");
+  gallery.create();
+  gallery.query = query;
+  gallery.loadPhotos();
+  gallery.photoSelection(
+    gallery.galleryContainer.querySelectorAll(".grid-item")
+  );
 };
 
-// Configurar botón de volver
 const setupBackButton = () => {
   document.querySelector("#backButton").addEventListener("click", () => {
     document.querySelector("#pin-container").remove();
@@ -64,25 +70,23 @@ const setupBackButton = () => {
   });
 };
 
-// Configurar botón de expandir imagen
 const setupExpandButton = (imageUrl, description) => {
   document.querySelector("#expandButton").addEventListener("click", () => {
     showModal(imageUrl, description);
   });
 };
 
-// Mostrar imagen expandida en un modal
 const showModal = (imageUrl, description) => {
   const modal = document.createElement("section");
   modal.classList.add("expanded-img");
   modal.innerHTML = `<img src="${imageUrl}" alt="${description}"/>`;
-
-  // Cerrar modal al hacer clic en la imagen expandida
   modal.addEventListener("click", () => modal.remove());
-
   document.body.appendChild(modal);
 };
 
-// Bloquear/desbloquear scroll
-const disableScroll = () => (document.body.style.overflowY = "hidden");
-const enableScroll = () => (document.body.style.overflowY = "auto");
+const disableScroll = () => {
+  document.body.style.overflowY = "hidden";
+};
+const enableScroll = () => {
+  document.body.style.overflowY = "auto";
+};
