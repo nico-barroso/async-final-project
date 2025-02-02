@@ -1,12 +1,12 @@
+import "./pin.css";
+import { PhotoGallery } from "../../components/PhotoGallery/PhotoGallery";
+
 /**
  * @file pin.js
  * @description Módulo que crea y gestiona los pines.
  * Un "pin" permite ver los datos del autor, la descripción de la imagen, un botón para ver la imagen en calidad original y a pantalla completa
  * y además una galería que se actualiza con imagenes similares a la descripción de la foto.
  */
-
-import "./pin.css";
-import { PhotoGallery } from "../../components/PhotoGallery/PhotoGallery";
 
 /**
  * Función principal para gestionar la visualización de un pin.
