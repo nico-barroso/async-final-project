@@ -1,5 +1,6 @@
 import "./Topics.css";
-import { PhotoGallery } from "../PhotoGallery/PhotoGallery";
+
+// 
 export const topicSection = () => {
   const main = document.querySelector("main");
   const section = document.createElement("ul");

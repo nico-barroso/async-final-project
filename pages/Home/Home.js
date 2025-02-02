@@ -1,3 +1,17 @@
+/**
+ * @file Home.js
+ * @description Módulo de la página principal
+ * Se gestiona de la siguiente manera:
+ *
+ *      ------------------------------------------------------------------------------
+ *     | searchBar() -> Crea una instancia de la barra de búsqueda.                   |
+ *     |------------------------------------------------------------------------------|
+ *     | topics() -> Una lista de temas que al seleccionar actualizan la galería.     |
+ *     |------------------------------------------------------------------------------|
+ *     | gallery.create() + gallery.loadPhotos() -> Crean y cargan las fotos          |
+ *     |______________________________________________________________________________|
+ */
+
 import "./Home.css";
 import { SearchBar } from "../../components/SearchBar/SearchBar.js";
 import { topicSection } from "../../components/Topics/Topics.js";
@@ -6,6 +20,9 @@ import { PhotoGallery } from "../../components/PhotoGallery/PhotoGallery.js";
 const gallery = new PhotoGallery("main");
 const search = new SearchBar("main");
 
+/**
+ * Inicializa la página de inicio.
+ */
 export const Home = () => {
   searchBar();
   topics();
@@ -13,6 +30,10 @@ export const Home = () => {
   gallery.loadPhotos();
 };
 
+/**
+ * Actualiza la galería con nuevas imágenes basadas en la consulta de búsqueda.
+ * @param {string} query - Consulta de búsqueda para filtrar imágenes.
+ */
 const updateGallery = async (query) => {
   try {
     gallery.cleaner();
@@ -24,6 +45,9 @@ const updateGallery = async (query) => {
   }
 };
 
+/**
+ * Crea y configura la barra de búsqueda.
+ */
 const searchBar = () => {
   search.create();
   search.query((query) => {
@@ -31,6 +55,9 @@ const searchBar = () => {
   });
 };
 
+/**
+ * Crea y configura los temas para la búsqueda de imágenes.
+ */
 const topics = async () => {
   topicSection();
 
@@ -42,7 +69,6 @@ const topics = async () => {
       topic.classList.add("active");
 
       const topicId = topic.id;
-
       updateGallery(topicId);
     });
   }

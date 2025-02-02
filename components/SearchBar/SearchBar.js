@@ -1,28 +1,35 @@
 import "./SearchBar.css";
+
+/**
+ * Clase que representa una barra de búsqueda interactiva.
+ * @param {string} attSelector - Selector del elemento donde se montará la barra de búsqueda.
+ */
 export class SearchBar {
   constructor(attSelector) {
     this.main = document.querySelector(attSelector);
-    this.sbElement;
+    this.sbElement = null;
   }
 
-  //Aquí creamos la base de datos
+  /**
+   * Crea y añade la estructura HTML de la barra de búsqueda al elemento principal.
+   */
   create() {
     this.sbElement = document.createElement("section");
     this.sbElement.classList.add("search-container");
     this.sbElement.innerHTML = `
     <form id="searchForm" role="search">
-    <input type="search" id="query" name="q"
-     placeholder="Search"
-     aria-label="Search your image">
-  </form>
+      <input type="search" id="query" name="q"
+        placeholder="Search"
+        aria-label="Search your image">
+    </form>
     `;
     this.main.append(this.sbElement);
   }
 
-  //Hola Antonio, si has llegado aquí me comí la cabeza porque
-  //no sabía que el manejo de eventos cuenta como asíncrono así
-  //que he hecho un pino puente usando un callback que recoja el
-  //texto cada vez que se usa la búsqueda.
+  /**
+   * Añade un manejador de eventos para capturar el texto ingresado en la búsqueda.
+   * @param {function(string): void} callback - Función que recibe la consulta de búsqueda.
+   */
   query(callback) {
     document
       .querySelector("#searchForm")
