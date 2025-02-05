@@ -1,6 +1,6 @@
 import "./PhotoGallery.css";
 import { getPhotos } from "../../utils/UnsplashAPI/UnsplashAPI";
-import { pin } from "../../pages/pin/pin";
+import { pin } from "../../public/pages/pin/pin";
 /**
  * Gestiona la creación y rellenado de datos de las galerías de fotos…
  *

@@ -13,9 +13,9 @@
  */
 
 import "./Home.css";
-import { SearchBar } from "../../components/SearchBar/SearchBar.js";
-import { topicSection } from "../../components/Topics/Topics.js";
-import { PhotoGallery } from "../../components/PhotoGallery/PhotoGallery.js";
+import { SearchBar } from "../../../components/SearchBar/SearchBar.js";
+import { topicSection } from "../../../components/Topics/Topics.js";
+import { PhotoGallery } from "../../../components/PhotoGallery/PhotoGallery.js";
 
 const gallery = new PhotoGallery("main");
 const search = new SearchBar("main");

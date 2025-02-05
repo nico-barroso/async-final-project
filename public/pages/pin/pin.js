@@ -1,5 +1,5 @@
 import "./pin.css";
-import { PhotoGallery } from "../../components/PhotoGallery/PhotoGallery";
+import { PhotoGallery } from "../../../components/PhotoGallery/PhotoGallery";
 
 /**
  * @file pin.js
