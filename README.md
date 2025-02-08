@@ -1,4 +1,5 @@
 # Unsplash Photo Gallery
+![Pinterest](https://github.com/user-attachments/assets/b15c8b26-ecb5-4c70-8ef1-177b803fc16e)
 
 ## Descripción
 Este proyecto es una galería de imágenes que utiliza la API de Unsplash para obtener y mostrar fotos de alta calidad. Permite a los usuarios buscar imágenes mediante una barra de búsqueda y explorar diferentes categorías.
